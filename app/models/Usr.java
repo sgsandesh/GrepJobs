@@ -99,6 +99,30 @@ public class Usr extends Model {
         this.save();
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
     /**
      * Confirms an account.
      *
@@ -109,6 +133,7 @@ public class Usr extends Model {
         if (user == null) {
             return false;
         }
+
 
         user.confirmationToken = null;
         user.validated = true;
