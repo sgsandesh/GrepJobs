@@ -7,9 +7,9 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> @Messages("profile.menu")<b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><a href="@routes.Application.index()"><i class="fa fa-user"></i> @Messages("profile.preview")</a></li>
+                <li><a href="@routes.LoginController.index()"><i class="fa fa-user"></i> @Messages("profile.preview")</a></li>
                 <li class="divider"></li>
-                <li><a href="@routes.Application.index()"><i class="fa fa-edit"></i> @Messages("profile.edit")</a></li>
+                <li><a href="@routes.LoginController.index()"><i class="fa fa-edit"></i> @Messages("profile.edit")</a></li>
             </ul>
         </li>
     </ul>
@@ -19,11 +19,11 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-hand-o-right"></i> @Messages("referrer.menu")<b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><a href="@routes.Application.index()"><i class="fa fa-cloud-upload"></i> @Messages("referrer.post")</a></li>
+                <li><a href="@routes.LoginController.index()"><i class="fa fa-cloud-upload"></i> @Messages("referrer.post")</a></li>
                 <li class="divider"></li>
-                <li><a href="@routes.Application.index()"><i class="fa fa-list-alt"></i> @Messages("referrer.view")</a></li>
+                <li><a href="@routes.LoginController.index()"><i class="fa fa-list-alt"></i> @Messages("referrer.view")</a></li>
                 <li class="divider"></li>
-                <li><a href="@routes.Application.index()"><i class="fa fa-inbox"></i> @Messages("referrer.mailbox")</a></li>
+                <li><a href="@routes.LoginController.index()"><i class="fa fa-inbox"></i> @Messages("referrer.mailbox")</a></li>
             </ul>
         </li>
     </ul>
@@ -33,9 +33,9 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-hand-o-right"></i> @Messages("jobseeker.menu")<b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><a href="@routes.Application.index()"><i class="fa fa-list-alt"></i> @Messages("jobseeker.applied")</a></li>
+                <li><a href="@routes.LoginController.index()"><i class="fa fa-list-alt"></i> @Messages("jobseeker.applied")</a></li>
                 <li class="divider"></li>
-                <li><a href="@routes.Application.index()"><i class="fa fa-inbox"></i> @Messages("jobseeker.mailbox")</a></li>
+                <li><a href="@routes.LoginController.index()"><i class="fa fa-inbox"></i> @Messages("jobseeker.mailbox")</a></li>
             </ul>
         </li>
     </ul>
@@ -46,7 +46,7 @@
             <ul class="dropdown-menu">
                 <li><a href="@controllers.account.settings.routes.Index.index()"><i class="fa fa-wrench"></i> @Messages("settings")</a></li>
                 <li class="divider"></li>
-                <li><a href="@routes.Application.logout()"><i class="fa fa-power-off"></i> @Messages("logout")</a></li>
+                <li><a href="@routes.LoginController.logout()"><i class="fa fa-power-off"></i> @Messages("logout")</a></li>
             </ul>
         </li>
     </ul>

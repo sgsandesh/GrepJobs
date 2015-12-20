@@ -3,12 +3,12 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                           controllers.LoginController.index()
 GET     /dashboard                  controllers.Dashboard.index()
 
-GET     /login                      controllers.Application.login()
-POST    /login                      controllers.Application.authenticate()
-GET     /logout                     controllers.Application.logout()
+GET     /login                      controllers.LoginController.login()
+POST    /login                      controllers.LoginController.authenticate()
+GET     /logout                     controllers.LoginController.logout()
 
 GET     /settings                   controllers.account.settings.Index.index()
 GET     /settings/password          controllers.account.settings.Password.index()

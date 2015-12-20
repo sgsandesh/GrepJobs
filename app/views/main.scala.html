@@ -22,7 +22,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     <span class="fa fa-bars fa-lg fa-inverse"></span>
                 </button>
-                <a class="navbar-brand" href="@routes.Application.index()">
+                <a class="navbar-brand" href="@routes.LoginController.index()">
                     <i class="fa fa-rocket"></i> @Messages("home.menu")
                 </a>
             </div>
@@ -33,17 +33,17 @@
 		        <li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i> @Messages("search.menu")<b class="caret"></b></a>
 		            <ul class="dropdown-menu">
-		                <li><a href="@routes.Application.index()"><i class="fa fa-star"></i> @Messages("search.saved")</a></li>
+		                <li><a href="@routes.LoginController.index()"><i class="fa fa-star"></i> @Messages("search.saved")</a></li>
 		                <li class="divider"></li>
-		                <li><a href="@routes.Application.index()"><i class="fa fa-search"></i> @Messages("search.regular")</a></li>
+		                <li><a href="@routes.LoginController.index()"><i class="fa fa-search"></i> @Messages("search.regular")</a></li>
 		                <li class="divider"></li>
-		                <li><a href="@routes.Application.index()"><i class="fa fa-search"></i> @Messages("search.advanced")</a></li>
+		                <li><a href="@routes.LoginController.index()"><i class="fa fa-search"></i> @Messages("search.advanced")</a></li>
 		            </ul>
 		        </li>
 		    </ul>
             
             <ul class="nav navbar-nav navbar-right">
-                    <li class=""><a href="@routes.Application.index()">@Messages("about.menu") &nbsp</a></li>
+                    <li class=""><a href="@routes.LoginController.index()">@Messages("about.menu") &nbsp</a></li>
             </ul>
         </div>
 
@@ -58,7 +58,7 @@
             <div>
                 <small>
                     grep jobs.. Thanks for visiting!!
-                    <a href="@routes.Application.index()">Contact us</a> <i class="fa fa-github fa-1"></i> <a href="">help/feedback</a>
+                    <a href="@routes.LoginController.index()">Contact us</a> <i class="fa fa-github fa-1"></i> <a href="">help/feedback</a>
                 </small>
             </div>
         </div>

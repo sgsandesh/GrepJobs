@@ -1,6 +1,5 @@
 package controllers.account;
 
-import controllers.Application;
 import models.Usr;
 import models.utils.AppException;
 import models.utils.Hash;

@@ -1,27 +1,23 @@
 package controllers;
 
 import models.Usr;
-import models.utils.AppException;
 import play.Logger;
 import play.data.Form;
-import play.data.validation.Constraints;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
-import views.html.login;
-import static controllers.form.Form.Login;
-import static controllers.form.Form.Register;
 
+import static controllers.form.Form.Login;
 import static play.data.Form.form;
 
 /**
  * Login and Logout.
  */
-public class Application extends Controller {
+public class LoginController extends Controller {
 
     public static Result GO_HOME = redirect(
-            routes.Application.index()
+            routes.LoginController.index()
     );
 
     public static Result GO_DASHBOARD = redirect(
@@ -61,13 +57,11 @@ public class Application extends Controller {
     public static Result authenticate() {
         Form<Login> loginForm = form(Login.class).bindFromRequest();
         Logger.info("Trying to authenticate user");
-        Form<Register> registerForm = form(Register.class);
 
         if (loginForm.hasErrors()) {
             Logger.info("Error while Trying to authenticate user");
          return    badRequest(index.render(views.html.login.render(form(Login.class)),
                  views.html.profile.render()));
-//            return badRequest(index.render(null,null));
         } else {
             session("email", loginForm.get().getEmail());
             return GO_DASHBOARD;

@@ -24,7 +24,7 @@
 				<section class="popupBody">
 					
 					<div class="formwizard_div userlogin">
-						@form(routes.Application.authenticate(), 'class -> "form") {
+						@form(routes.LoginController.authenticate(), 'class -> "form") {
 						@if(loginForm.hasGlobalErrors) {
 						<p class="error">
 							<span class="label label-danger">@loginForm.globalError.message</span>
