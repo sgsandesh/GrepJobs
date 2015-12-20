@@ -19,7 +19,7 @@ import views.html.account.signup.created;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.UUID;
-
+import static controllers.form.Form.Register;
 import static play.data.Form.form;
 
 /**
@@ -35,7 +35,7 @@ public class Signup extends Controller {
      * @return create form
      */
     public static Result create() {
-        return ok(create.render(form(Application.Register.class)));
+        return ok(create.render(form(Register.class)));
     }
 
     /**
@@ -44,7 +44,7 @@ public class Signup extends Controller {
      * @return create form
      */
     public static Result createFormOnly() {
-        return ok(create.render(form(Application.Register.class)));
+        return ok(create.render(form(Register.class)));
     }
 
     /**
@@ -53,19 +53,19 @@ public class Signup extends Controller {
      * @return Successfull page or created form if bad
      */
     public static Result save() {
-        Form<Application.Register> registerForm = form(Application.Register.class).bindFromRequest();
+        Form<Register> registerForm = form(Register.class).bindFromRequest();
 
         if (registerForm.hasErrors()) {
             return badRequest(create.render(registerForm));
         }
 
-        Application.Register register = registerForm.get();
+        Register register = registerForm.get();
         Result resultError = checkBeforeSave(registerForm, register.email);
-
+        System.out.println("resultError = " + resultError);
         if (resultError != null) {
             return resultError;
         }
-
+        System.out.println(" Trying to save the user = " );
         try {
             Usr user = new Usr();
             user.email = register.email;
@@ -94,9 +94,12 @@ public class Signup extends Controller {
      * @param email email address
      * @return Index if there was a problem, null otherwise
      */
-    private static Result checkBeforeSave(Form<Application.Register> registerForm, String email) {
+    private static Result checkBeforeSave(Form<Register> registerForm, String email) {
         // Check unique email
-        if (Usr.findByEmail(email) != null) {
+        Usr user = Usr.findByEmail(email);
+        if ( user!= null) {
+            System.out.println("The user already exists with the email id"+user.fullname);
+            System.out.println("registerForm = [" + registerForm + "], email = [" + email + "]");
             flash("error", Messages.get("error.email.already.exist"));
             return badRequest(create.render(registerForm));
         }

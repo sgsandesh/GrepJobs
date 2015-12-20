@@ -9,6 +9,9 @@ import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
+import views.html.login;
+import static controllers.form.Form.Login;
+import static controllers.form.Form.Register;
 
 import static play.data.Form.form;
 
@@ -43,78 +46,12 @@ public class Application extends Controller {
             }
         }
 
-        return ok(index.render(form(Register.class), form(Login.class)));
+        return ok(index.render(views.html.login.render(form(Login.class)),views.html.profile.render()));
+    }
+    public static Result login() {
+        return ok(views.html.login.render(form(Login.class)));
     }
 
-    /**
-     * Login class used by Login Form.
-     */
-    public static class Login {
-
-        @Constraints.Required
-        public String email;
-        @Constraints.Required
-        public String password;
-
-        /**
-         * Validate the authentication.
-         *
-         * @return null if validation ok, string with details otherwise
-         */
-        public String validate() {
-
-            Usr user = null;
-            try {
-                user = Usr.authenticate(email, password);
-            } catch (AppException e) {
-                return Messages.get("error.technical");
-            }
-            if (user == null) {
-                return Messages.get("invalid.user.or.password");
-            } else if (!user.validated) {
-                return Messages.get("account.not.validated.check.mail");
-            }
-            return null;
-        }
-
-    }
-
-    public static class Register {
-
-        @Constraints.Required
-        public String email;
-
-        @Constraints.Required
-        public String fullname;
-
-        @Constraints.Required
-        public String inputPassword;
-
-        /**
-         * Validate the authentication.
-         *
-         * @return null if validation ok, string with details otherwise
-         */
-        public String validate() {
-            if (isBlank(email)) {
-                return "Email is required";
-            }
-
-            if (isBlank(fullname)) {
-                return "Full name is required";
-            }
-
-            if (isBlank(inputPassword)) {
-                return "Password is required";
-            }
-
-            return null;
-        }
-
-        private boolean isBlank(String input) {
-            return input == null || input.isEmpty() || input.trim().isEmpty();
-        }
-    }
 
     /**
      * Handle login form submission.
@@ -123,13 +60,16 @@ public class Application extends Controller {
      */
     public static Result authenticate() {
         Form<Login> loginForm = form(Login.class).bindFromRequest();
-
+        Logger.info("Trying to authenticate user");
         Form<Register> registerForm = form(Register.class);
 
         if (loginForm.hasErrors()) {
-            return badRequest(index.render(registerForm, loginForm));
+            Logger.info("Error while Trying to authenticate user");
+         return    badRequest(index.render(views.html.login.render(form(Login.class)),
+                 views.html.profile.render()));
+//            return badRequest(index.render(null,null));
         } else {
-            session("email", loginForm.get().email);
+            session("email", loginForm.get().getEmail());
             return GO_DASHBOARD;
         }
     }

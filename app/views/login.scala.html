@@ -1,37 +1,88 @@
-@(loginForm: Form[Application.Login])
-
+@(loginForm: Form[controllers.form.Form.Login])
 @import helper._
 @implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
-
-<h3>@Messages("signin.signin")</h3>
-
-@form(routes.Application.authenticate(), 'class -> "form") {
-
-    @if(loginForm.hasGlobalErrors) {
-        <p class="error">
-            <span class="label label-danger">@loginForm.globalError.message</span>
-        </p>
-    }
-
-    <fieldset>
-        @inputText(
-            loginForm("email"),
-            'placeholder -> Messages("email"),
-            '_label -> null,
-            '_help -> Messages("signin.your.email"),
-            'class -> "form-control"
-        )
-        @inputPassword(
-            loginForm("password"),
-            '_label -> null,
-            'placeholder -> Messages("password"),
-            '_help -> Messages("signin.your.password"),
-            'class -> "form-control"
-        )
-    </fieldset>
-
-    <div class="form-actions">
-        <input type="submit" class="btn btn-primary" value="@Messages("signin.signin")">
-        <small><a href="@controllers.account.routes.Reset.ask">@Messages("forgot.password")</a></small>
-    </div>
-}
+<!DOCTYPE html>
+<html lang="en">
+	<title>login or register</title>
+	<!-- <script src="@routes.Assets.at("javascripts/jquery.min.js")"></script> -->
+	<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.leanModal.min.js")"></script>
+	<!--  <link rel="stylesheet"
+						href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+		-->
+		<link type="text/css" rel="stylesheet" href="@routes.Assets.at("stylesheets/login.css")" />
+		
+		<body>
+			<div class="container">
+				<!-- <a id="modal_trigger" href="#modal" class="btn">Click here to
+					Login or register</a>
+				-->
+				<div id="modal" class="popupContainer" style="display: none;">
+					<header class="popupHeader">
+						<span class="header_title">Login</span> <span class="modal_close"><i
+					class="fa fa-times"></i></span>
+				</header>
+				<section class="popupBody">
+					
+					<div class="formwizard_div userlogin">
+						@form(routes.Application.authenticate(), 'class -> "form") {
+						@if(loginForm.hasGlobalErrors) {
+						<p class="error">
+							<span class="label label-danger">@loginForm.globalError.message</span>
+						</p>
+						}
+						<div class="">
+							<form>
+								<label>
+									@inputText(
+									loginForm("email"),
+									'placeholder -> Messages("email"),
+									'_label -> null
+									)
+									<!-- <input type="text" placeholder="Email" />  -->
+									@inputPassword(
+									loginForm("password"),
+									'_label -> null,
+									'placeholder -> Messages("password")
+									)
+									<!-- <input type="password" placeholder="Password"/> <br /> -->
+									<div class="checkbox">
+										<input id="remember" type="checkbox" />
+										<label for="remember">Remember
+										me on this computer</label>
+									</div>
+									<div class="action_btns">
+										<div class="one_half">
+											<a href="#" class="btn" id="register_form"> SignUp</a>
+										</div>
+										<div class="one_half last">
+											<!-- <a href="#" class="btn btn_red">Login</a> -->
+											<input type="submit" class="btn btn_red" value="Login">
+										</div>
+									</div>
+									}
+								</form>
+								<!-- End of userlogin -->
+							</div>
+						</div>
+						<!-- Register Form -->
+						<div class="formwizard_div user_register">
+							<form>
+								<label> <input type="text" placeholder="Full Name" /> <br />
+								<input type="email" placeholder="Email Address" /> <br />  <input
+								type="password" placeholder="Password"/> <br />
+								<div class="action_btns">
+									<div class="one_half">
+										<a href="#" class="btn back_btn"><i
+										class="fa fa-angle-double-left"></i> Back</a>
+									</div>
+									<div class="one_half last">
+										<a href="#" class="btn btn_red">Register</a>
+									</div>
+								</div>
+							</form>
+						</div>
+					</section>
+				</div>
+			</div>
+		</body>
+	</html>
